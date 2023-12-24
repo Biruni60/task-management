@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import img from '../assets/5101874_1_-removebg-preview.png'
 import { useContext } from "react";
 import { AuthContext } from "./AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const SignUp = () => {
+    const navigate=useNavigate()
     const {signUp,updateUser}=useContext(AuthContext)
      const { handleSubmit,reset, register, formState: { errors } } = useForm();
      const onSubmit = values =>{
@@ -14,6 +15,7 @@ const SignUp = () => {
             updateUser(values.name,values.image)
             .then(()=>{
                 console.log("user created");
+                navigate('/dashboard')
             })
             .catch(error=>console.log(error.message))
         })
@@ -23,7 +25,7 @@ const SignUp = () => {
      
     return (
         <div>
-        <div className="hero bg-base-200 p-10 ">
+        <div className="hero bg-base-200 p-4 md:p-10 ">
   <div className="hero-content flex-col w-full  lg:flex-row-reverse">
     <img src={img} className="  rounded-lg" />
     <div className="w-full py-20 " >

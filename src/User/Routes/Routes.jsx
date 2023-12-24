@@ -8,6 +8,10 @@ import SignIn from "../SignIn";
 import Root from "../../HomeComponent/Home/Root";
 import About from "../../NavComponents/About";
 import Contact from "../../NavComponents/Contact";
+import DashBoard from "../../DashBoard/DashBoard";
+import Profile from "../../DashBoard/Profile";
+import CreateTask from "../../DashBoard/CreateTask";
+import Tasks from "../../DashBoard/Tasks";
 
 
 const router = createBrowserRouter([
@@ -37,5 +41,23 @@ const router = createBrowserRouter([
         }
       ]
     },
+    {
+    path:"/dashboard",
+    element:<DashBoard></DashBoard>,
+    children:[
+        {
+            path:'/dashboard/profile',
+            element:<Profile></Profile>
+        },
+        {
+            path:'/dashboard/createtask',
+            element:<CreateTask></CreateTask>
+        },
+        {
+            path:'/dashboard/tasks',
+            element:<Tasks></Tasks>
+        }
+    ]
+    }
   ]);
   export default router;

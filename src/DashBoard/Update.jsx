@@ -2,17 +2,16 @@ import { useForm } from "react-hook-form";
 
 import img from '../assets/3275466.jpg'
 
-import {  useNavigate } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../Hooks/axiosSeceure";
 import { ToastContainer, toast } from "react-toastify";
-import { useContext } from "react";
-import { AuthContext } from './../User/AuthProvider';
 
 
-const CreateTask = () => {
+const Update = () => {
+    const {id}=useParams()
     const navigate=useNavigate()
     const axiosPublic=useAxiosSecure()
-    const {user}=useContext(AuthContext)
+ 
      const { handleSubmit,reset, register } = useForm();
      const onSubmit = data =>{
       const userInfo = {
@@ -20,24 +19,22 @@ const CreateTask = () => {
        description:data.description,
        deadline:data.deadline,
        priority:data.priority,
-       email:user?.email,
-       role:"todo"
     }
-    axiosPublic.post('/addtasks', userInfo)
+    axiosPublic.put(`/update/${id}`, userInfo)
         .then(res => {
-            if (res.data.insertedId) {
+            console.log(res);
+            if (res.data.modifiedCount>0) {
                 console.log('user added to the database')
                 reset();
-               toast("task Created Succesfully")
+               toast("task updated Succesfully")
                 navigate('/dashboard/tasks');
             }
         })
         reset();
      };
-     
     return (
         <div>
-        <div className="hero bg-base-200  md:p-10 ">
+           <div className="hero bg-base-200  md:p-10 ">
   <div className="hero-content flex-col w-full  lg:flex-row-reverse">
     <div className="lg:w-3/4 h-full">
     <img src={img} className="h-full  rounded-lg" />
@@ -85,15 +82,16 @@ const CreateTask = () => {
       
       
       <br />
-      <button className="w-full btn text-white  bg-emerald-500 text-xl" type="submit">CREATE TASK</button>
+      <button className="w-full btn text-white  bg-emerald-500 text-xl" type="submit">EDIT TASK</button>
     </form>
      
     </div>
   </div>
 </div>
              <ToastContainer />  
-        </div>
+        </div> 
+       
     );
-}; 
+};
 
-export default CreateTask;
+export default Update;

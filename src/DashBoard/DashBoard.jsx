@@ -4,7 +4,7 @@ import { VscGitPullRequestGoToChanges } from "react-icons/vsc"
 import { CgProfile } from "react-icons/cg"
 const DashBoard = () => {
     return (
-        <div className="drawer lg:drawer-open bg-base-200 min-h-screen  max-w-screen-xl mx-auto ">
+        <div className="drawer lg:drawer-open bg-base-200 min-h-screen   mx-auto ">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex  flex-col">
           {/* Page content here */}

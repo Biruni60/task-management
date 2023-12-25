@@ -12,6 +12,7 @@ import DashBoard from "../../DashBoard/DashBoard";
 import Profile from "../../DashBoard/Profile";
 import CreateTask from "../../DashBoard/CreateTask";
 import Tasks from "../../DashBoard/Tasks";
+import Update from "../../DashBoard/Update";
 
 
 const router = createBrowserRouter([
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
         {
             path:'/dashboard/tasks',
             element:<Tasks></Tasks>
+        }
+        ,
+        {
+            path:'/dashboard/update/:id',
+            element:<Update></Update>
         }
     ]
     }
